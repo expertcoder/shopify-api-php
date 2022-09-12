@@ -151,12 +151,9 @@ final class Registry
             throw new MissingWebhookHandlerException("No handler was registered for topic '$topic'");
         }
 
-        try {
-            $handler->handle($topic, $shop, $body);
-            $response = new ProcessResponse(true);
-        } catch (Exception $error) {
-            $response = new ProcessResponse(false, $error->getMessage());
-        }
+
+        $handler->handle($topic, $shop, $body);
+        $response = new ProcessResponse(true);
 
         return $response;
     }
